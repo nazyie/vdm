@@ -1,0 +1,35 @@
+---------------------------------------------------------
+-- Author: Engku Nazri Bin Engku Nasir
+-- Created: 29 October 2020
+-- Updated: -
+-- Description: Learning the Formal Method Using VDM++
+---------------------------------------------------------
+
+class Student
+
+types
+	public CourseName = seq of char;
+	public Faculty = <FEB>|<FSTS>|<FSS>|<FSKTM>|<FK>; 
+
+values
+	private creditHr : nat = 1;
+	private passingCGPA : real = 2.50;
+
+instance variables
+	private studentName : seq of char;
+	private facultyName : Faculty;
+	private yearOfStudy : nat;
+	private courseReg : set of CourseName;
+	private studyLoanStatus : bool;
+	private studentCGPA : real;
+
+	inv yearOfStudy <= 2013 and yearOfStudy > 2000;
+	inv studentCGPA <= 4.0;
+
+operations
+-- operations definition section
+
+functions
+-- functions definitions section
+
+end Student
