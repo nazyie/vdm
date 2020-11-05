@@ -1,0 +1,26 @@
+---------------------------------------------------------
+-- Author: Engku Nazri Bin Engku Nasir
+-- Created: 5 November 2020
+-- Updated: -
+-- Description: Lab Data Definition Exercise
+---------------------------------------------------------
+
+class Book
+
+types
+        public Title = seq of char;
+
+values
+        private Price : real = 20.50;
+
+instance variables
+        private bookTitle : Title;
+        private numberOfPages : nat1;
+
+        inv numberOfPages >= 1 and numberOfPages <= 100;
+
+operations
+
+functions
+
+end Book
