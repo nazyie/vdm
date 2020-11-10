@@ -1,0 +1,38 @@
+---------------------------------------------------------
+-- Author: Engku Nazri Bin Engku Nasir
+-- Created: 
+-- Updated: -
+-- Description: Learning the Formal Method Using VDM++
+---------------------------------------------------------
+
+class Student
+
+types
+        public month = nat1 | seq of char;
+        public Date = nat1 * month * nat1;
+        public CourseCode = seq of char * nat1;
+
+        public Course ::
+                courseCode : CourseCode
+                courseName : seq of char
+                courseCredit : nat1;
+
+values
+        private courseCredit = 1;
+
+instance variables
+        -- defining the student
+        private studentName : seq of char;
+        private dateOfBirth : Date;
+        private yearOfStudy : nat1;
+        private courseRegistered : Course;
+
+        inv yearOfStudy >= 1;
+
+operations
+-- operations definition section
+
+functions
+-- functions definitions section
+
+end Student
