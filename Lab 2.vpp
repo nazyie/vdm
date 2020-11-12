@@ -31,6 +31,7 @@ instance variables
 
         inv yearOfStudy >= 1;
 
+--EXPLICIT OPERATION
 operations
         public assignParamYearOfStudy : nat1 ==> nat1
                 assignParamYearOfStudy(currentYear) == 
@@ -54,6 +55,17 @@ operations
                         studentAge := yearOfStudy - dateOfBirth.#2;
                         return studentAge;
                         )
+
+--EXPLICIT OPERATION
+operations
+       public assignParamYearOfStudyExp(currentYear : nat1) yearOfStudy : nat1
+       pre currentYear > 0
+       post yearOfStudy = currentYear
+
+operations
+        public assignParamDateOfBirthExp(day : nat1, month : nat1, year : nat1) dateOfBirth : Date
+        pre day > 0 and month > 0 and year > 0
+        post dateOfBirth = mk_(day, month, year)
 
 functions
 -- functions definitions section
