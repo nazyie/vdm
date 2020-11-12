@@ -56,14 +56,14 @@ operations
                         return studentAge;
                         )
 
---EXPLICIT OPERATION
+--IMPLICIT OPERATION
 operations
-       public assignParamYearOfStudyExp(currentYear : nat1) yearOfStudy : nat1
+       public assignParamYearOfStudyImp(currentYear : nat1) yearOfStudy : nat1
        pre currentYear > 0
        post yearOfStudy = currentYear
 
 operations
-        public assignParamDateOfBirthExp(day : nat1, month : nat1, year : nat1) dateOfBirth : Date
+        public assignParamDateOfBirthImp(day : nat1, month : nat1, year : nat1) dateOfBirth : Date
         pre day > 0 and month > 0 and year > 0
         post dateOfBirth = mk_(day, month, year)
 
