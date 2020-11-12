@@ -1,0 +1,39 @@
+---------------------------------------------------------
+-- Author: Engku Nazri Bin Engku Nasir
+-- Created: 5 November 2020
+-- Updated: -
+-- Description: Lab 2 Operation Definition Exercise
+---------------------------------------------------------
+
+class Book
+
+types
+        public Title = seq of char;
+        public noOfBook = int;
+
+values
+        private Price : real = 20.50;
+
+instance variables
+        private bookTitle : Title;
+        private numberOfPages : nat1;
+        private totalPrice : real;
+
+        inv numberOfPages >= 1 and numberOfPages <= 100;
+
+operations
+        CalculateTotalPriceExp : nat * real ==> real
+        CalculateTotalPriceExp(noOfBook, Price) == 
+        (
+        totalPrice := noOfBook * Price;
+        return totalPrice;
+        )
+
+operations
+        CalculateTotalPriceImp(noOfBook : nat, Price: real) totalPrice: real
+        pre noOfBook > 0 and Price > 0
+        post totalPrice = noOfBook * Price
+
+functions
+
+end Book
