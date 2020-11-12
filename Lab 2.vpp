@@ -17,6 +17,7 @@ types
                 courseName : seq of char
                 courseCredit : nat1;
 
+
 values
         private courseCredit = 1;
 
@@ -26,11 +27,33 @@ instance variables
         private dateOfBirth : Date;
         private yearOfStudy : nat1;
         private courseRegistered : Course;
+        private studentAge : nat1;
 
         inv yearOfStudy >= 1;
 
 operations
--- operations definition section
+        public assignParamYearOfStudy : nat1 ==> nat1
+                assignParamYearOfStudy(currentYear) == 
+                        (
+                        yearOfStudy := currentYear;
+                        return yearOfStudy;
+                        )
+
+operations
+        public assignParamDateOfBirth : nat1 * nat1 * nat1 ==> Date
+                assignParamDateOfBirth(day, month, year) == 
+                        (
+                        dateOfBirth := mk_(day, month, year);
+                        return dateOfBirth;
+                        )
+
+operations
+        public calculateStudentAge :  nat1 ==> nat1
+                calculateStudentAge(yearOfStudy) ==
+                        (
+                        studentAge := yearOfStudy - dateOfBirth.#2;
+                        return studentAge;
+                        )
 
 functions
 -- functions definitions section
