@@ -1,14 +1,22 @@
 ---------------------------------------------------------
 -- Author: Engku Nazri Bin Engku Nasir
--- Created: 5 November 2020
+-- Created: 11 December 2020
 -- Updated: -
--- Description: Lab Data Definition Exercise
+-- Description: Lab 3 Mapping and Composite Type Exercise
 ---------------------------------------------------------
 
 class Book
 
 types
         public Title = seq of char;
+        public Category = <Software> | <Database> | <Network>;
+
+        -- 3.1 define BookStore consist of bookStoreName and bookStoreAddress
+        public BookStore ::
+                bookStoreName : seq of char
+                bookStoreAddress : seq of char;
+        -- 3.2 Map the Category to BookStore into the mapping type 'CategoryToBookStore'
+        public CategoryToBookStore = map Category to set of BookStore;
 
 values
         private Price : real = 20.50;
@@ -16,10 +24,29 @@ values
 instance variables
         private bookTitle : Title;
         private numberOfPages : nat1;
-
-        inv numberOfPages >= 1 and numberOfPages <= 100;
+                inv numberOfPages >= 1 and numberOfPages <= 100;
+        
+        private bookCategory : Category;
+        -- 3.3 define the instance variable of type 'CategoryToBookStore'
+        private BookStoreCategory : CategoryToBookStore := {|->};
+        -- 3.4 define instace variable of type 'BookStore'
+        private StoreBook : BookStore;
 
 operations
+        searchBookStore : Category ==> CategoryToBookStore
+        searchBookStore(category) ==
+        (
+        -- 3.5 find book category
+        if bookCategory = category
+        -- 3.6 map that category to instance variable in 3.4 and assign it to variable in 3.3
+        then
+        BookStoreCategory := BookStoreCategory munion {category |-> StoreBook}
+        -- 3.7 else assign with empty mapping
+        else
+        BookStoreCategory := {|->};
+        -- 3.8 return mapping value to return type CategoryToBookStore
+        return BookStoreCategory;
+        )
 
 functions
 
