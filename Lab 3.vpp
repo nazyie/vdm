@@ -1,0 +1,36 @@
+class CourseRegistration
+
+types
+        public CourseID = seq of char;
+        public Student ::
+                id : seq of char
+                name : seq of char;
+        public CourseStudent = map CourseID to set of Student;
+
+values
+
+instance variables
+        courseStudentList : CourseStudent := {|->}
+
+operations
+        public getStudent : seq of char * seq of char ==> Student
+        getStudent(id, name) ==
+        (
+        return mk_Student(id, name);
+        );
+
+        public registerCourse : CourseID * set of Student ==> ()
+        registerCourse(courseID, studentList) ==
+        (
+        courseStudentList := courseStudentList munion {courseID |-> studentList};
+        );
+
+        public getRegisteredStudentList : CourseID ==> set of set of Student
+        getRegisteredStudentList(courseID) ==
+        (
+        return rng({courseID} <: courseStudentList);
+        );
+
+functions
+
+end CourseRegistration
