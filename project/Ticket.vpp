@@ -1,0 +1,71 @@
+class Ticket
+
+	instance variables
+		id: nat;
+    date: Date;
+    time: Time;
+    public isPaid: bool;
+    parkingSlot: nat;
+    amount: real := 0;
+
+
+	types
+		public Date ::
+			day: nat
+	    month: nat
+	    year:nat;
+	
+		public Time ::
+	  	hour: nat
+	    minute: nat
+	    second: nat;
+
+	
+	values
+		rate:real = 2.00;
+	
+	
+	operations
+		public Ticket: nat * Date * Time * nat ==> Ticket		-- Ticket constructor
+			Ticket(a, b, c, d) == (
+				id := a;
+		    date := b;
+		    time := c;
+		    isPaid := false;
+		    parkingSlot := d;
+		);
+		
+		public calculateAmount : Date ==> ()								-- Calculate amount need to be paid for ticket
+			calculateAmount(currentDate) == (
+				if date.day <> currentDate.day or
+					date.month <> currentDate.month or
+					date.year <> currentDate.year
+				then
+					calculateDate(date, time)
+					
+				else 
+					calculateTime(time);
+			);
+			
+		public calculateDate : Date * Time ==> ()
+			calculateDate(currentDate, currentTime) == (
+				if date.month = currentDate.month and date.year = currentDate.month
+				then
+					if currentDate.day - date.day > 1
+					then
+						amount := 100
+					else
+						amount := 24 - time.hour + currentTime.hour * rate
+				else
+					amount := 100;
+		
+					isPaid := true;
+			);
+			
+		public calculateTime : Time ==> ()
+			calculateTime(currentTime) == (
+				amount := currentTime.hour - time.hour * rate;
+				isPaid := true;
+			);
+			
+end Ticket

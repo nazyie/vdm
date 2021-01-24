@@ -1,0 +1,27 @@
+class Sensor
+
+	instance variables
+		public status: CarPresence := <Absent>;
+
+		
+	types
+		public CarPresence = <Absent> | <Present>;
+	
+	
+	values
+
+	
+	operations
+		public CarDetection: bool ==> ()
+			CarDetection(isCar) == (
+				if isCar = true
+				then
+					status := <Present>
+				else
+					status := <Absent>;
+			);
+
+	
+	functions
+
+end Sensor

@@ -1,0 +1,51 @@
+class TicketDispenser is subclass of Sensor
+
+	instance variables
+		public ticket: Ticket;
+		public parkingLotStatus: ParkingLotStatus := <Available>;
+
+		
+	types
+		public ParkingLotStatus = <Available> | <Occupied>;
+		public ParkingLot = map ParkingLotStatus to set of nat;
+		
+		
+	values
+		parkingLot: ParkingLot = {<Available> |-> {1, ..., 10}};
+
+	
+	operations
+		public DispenseTicket: () ==> ()
+			DispenseTicket() == (
+				if status = <Present> and isAvailable()
+				then
+					ticket := new Ticket();
+			);
+			
+		public isAvailable: () ==> bool
+			isAvailable() == (
+				if parkingLotStatus = <Available>
+				then
+					return true
+				else
+					return false;
+			);
+			
+		public availableParking: () ==> ParkingLot
+			availableParking() == (
+				return {<Available>} <: parkingLot
+			);
+						
+		public isExit: () ==> bool
+			isExit() == (
+				if ticket.isPaid = true
+				then
+					return true
+				else
+					return false;
+			);
+
+	
+	functions
+
+end TicketDispenser
