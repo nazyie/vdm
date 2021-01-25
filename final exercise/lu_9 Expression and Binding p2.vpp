@@ -1,0 +1,80 @@
+class ExpressionAndBindingP2
+
+instance variables
+        setofMapping : set of MappingValue := { 63187 |-> "Nazri", 63455 |-> "Hannan"};
+        setofValue : set of nat := {11,22,33,44,55,66};
+        unimasStudent : Student;
+
+types
+        Student ::
+                name : seq of char
+                matricNo : nat
+                address : seq of char;
+
+        MappingValue = map nat to seq of char;
+
+-- record expression
+operations
+        exampleRecordExpression : seq of char * nat * seq of char ==> ()
+        exampleRecordExpression(studName, studMatric, studAddress) ==
+        (
+        return mk_Student(studName, studMatric, studAddress);
+        );
+
+-- apply expression
+-- it being used to looking up value based on index, map, calling function
+operations
+        exampleApply : () ==> ()
+        exampleApply() ==
+        (
+        let m = setofMapping
+        in m(63187);
+
+        return setOfValue(3)
+        )
+
+-- is expression [is_nat | is_real | is_A(mk_B(3.7))]
+-- for testing values and record values
+functions
+        functionForIsExpression : nat -> seq of char
+        functionForIsExpression(anynumber) ==
+        if is_nat(anynumber)
+        then "this is a number"
+        else "this is not a number";
+
+-- isofclass(cls, obj) - if obj is class of cls or sublass of cls
+-- isofbaseclass(cls, obj) if obj is class of cls and cls cannot have superclass
+-- sameclass(obj1, obj2) are instances of same class
+-- samebaseclass(obj1, obj2) comparison of baseclass of two object
+
+-- pattern binding [basic pattern, pattern identifier, dont care pattern , record pattern]
+operations
+        exampleOfPatternBinding : nat * nat * nat * token ==> ()
+        exampleOfPatternBinding(val1, val2 , val3, exampleDoNotCarePattern)==
+        (
+        -- basic pattern
+        basicpattern := val1;
+
+        -- do not care pattern
+        exampleDoNotCarePattern := mk_Student("Engku Nazri", 63187, "KL"); -- suppose to be - instead of "KL" but didnt work to ignore the token value
+
+        -- pattern identifier
+        val2 := unimasStudent.matricNo;
+
+        -- record pattern
+        unimasStudent := mk_Student("John Doe", 63198, "London");
+        );
+
+-- bindings
+-- binding [pattern in set expression]
+operations
+        exampleofbinding : () ==> ()
+        exampleofbinding() ==
+        (
+        return forall c in set setofValue &
+                c * 2;
+        )
+
+
+
+end ExpressionAndBindingP2
