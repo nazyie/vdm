@@ -1,0 +1,109 @@
+class ExpressionAndBinding
+
+instance variables
+        studentName : seq of char := "Engku Nazri";
+        grade : char;
+
+types
+        numberSet = set of nat;
+        numberSeq = set of nat;
+
+values
+
+-- let expression
+-- only to improved the readibility of complex expression
+functions
+        calculateSalary : real * real * real -> real
+        calculateSalary(rate, wages, workingHours) ==
+                let rate in set {2.0, 4.5, 7.0}
+                in wages = rate * workingHours;
+
+functions
+        calculateStudentMark : real * real -> real
+        calculateStudentMark(studentMark, totalMark) ==
+                let mark = studentMark > 0,
+                        studentMark = totalMark / 50 * 100
+                in studentMark;
+
+--let be such that (let `pattern` be st `exp1` in `exp2`)
+--same with the let expression [be st - is optional (be such that)]
+
+-- def expression (define expression)
+-- can only being used inside operation which denoted the value expression in context which pattern match again expression
+
+operations
+        thisIsExampleOperation : real ==> ()
+        thisIsExampleOperation(exampleVal) ==
+        (
+        def a = CallOtherOperation(exampleVal) in f(a);
+        def defineStudentName = studentName in g(a);
+        );
+
+        CallOtherOperation : real ==> ()
+        CallOtherOperation(valueNeeds) ==
+        (
+        return valueNeeds;
+        );
+
+-- conditional Expression [IF ELSEIF THEN]
+operations
+        exampleConditionalExpression : real ==> char
+        exampleConditionalExpression(yourMark) ==
+        (
+        if yourMark > 80
+        then grade := 'A'
+        elseif yourMark > 50 and yourMark <= 80
+        then grade := 'B'
+        elseif yourMark > 30 and yourMark <= 50
+        then grade := 'C'
+        else grade := 'F';
+
+        return grade;
+        );
+
+-- cases Expression [CASES]
+operations
+        exampleCasesExpression : char ==> seq of char
+        exampleCasesExpression(grade) ==
+        (
+        return cases grade:
+               'A' -> "You so execellent" ,
+               'B' -> "Good Job",
+               'F' -> "Try More Baby"
+        end;
+        ); 
+-- set expression and sequence expression
+operations
+        exampleSetandSeqExp : nat ==> ()
+        exampleSetandSeqExp(multiplyNo) ==
+        (
+        numberSet := {2 , 10, 3131, 33};
+        numberSeq := {a * multiplyNo | a in set numberSet and a mod 2 = 0};
+
+-- subsequence of sequences
+-- it will return the second position in the sequence - THE SEQ INDEX START WITH 1, 2, 3
+        return numberSeq(2);
+        );
+
+-- map expression
+operations
+        exampleMapExp : nat ==> ()
+        exampleMapExp(mapExample, name, matric_no) ==
+        (
+        mapExample := {name |-> matric_no};
+        return 
+        {
+        b |-> a | a in set numberSet, 
+        b in set numberSet and b * 2
+        };
+        )
+
+-- tuple expression
+operations
+        exampleTuple : seq of char * seq of char ==> ()
+        exampleTuple(name, matricNo) ==
+        (
+        return mk_(name, matricNo);
+        )
+
+end ExpressionAndBinding
