@@ -1,0 +1,39 @@
+class LU8
+
+instance variables
+        public grade : char;
+        public mark : int;
+
+types
+
+values
+        public msg : seq of char = "success";
+
+-- example of Exception Clause 'errs' that only can be used on the implicit operation
+operations
+        calculateMark(studentMark : real) grade : char
+        pre mark = studentMark
+        post grade <> ' '
+
+        errs 
+        EmptyMark : mark < 0 ->  msg = "This mark should not be less then 0"
+        Exceeds : mark > 0 -> msg = "This mark should not more than 100";
+
+-- example of explicit operations
+        classifiedClass : char ==> seq of char
+        classifiedClass(studentGrade) ==
+        (
+        if studentGrade = 'P'
+        then return "Class No 1"
+        else return "Class No 2";
+        );
+
+-- Delegate Operation - abstract interface to be implemented by difference algorithm operation
+-- the subclass will responsibility to create the algorithm for this `do_multiplication` operation
+        do_multiplication : () ==> ()
+        do_multiplication () ==
+        is subclass responsibility;
+
+functions
+
+end LU8
