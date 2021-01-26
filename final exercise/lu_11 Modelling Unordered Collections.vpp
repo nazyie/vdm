@@ -1,0 +1,64 @@
+class ModellingUnorderedCollections
+
+-- set are unordered collections of elements
+-- one copy of each elements Eg.[{1,1,2,2} = {1,2}]
+-- you can set anything by `set of [types]` types can be int, nat, real and others.
+
+instance variables
+        setExample :  set of nat := {1,2,3,4,5};                                -- example set enumeration
+        anothersetExample : set of setExample := {{1,2,3},{1,2,3},{3,4,5}};     -- another example set enumeration
+
+-- set comprehensions
+-- structure is [{elements | list of binding & predicate}] predicate is optional
+        exampleSetComprehensionsValue : set of int := {3 * x | x : int & x < 3};
+
+-- set range expression {e1,...,e2}
+-- if e1 and e2 numeric expression then the value will be inclusive
+-- if e1 value < e2 value then it denote an empty set
+        setRangeExample : set of nat := {1,...,10};
+
+
+-- set membership [X in set A | X not in set A]
+        setMembership :  set of nat;
+        inv setMembership in set setExample;                                    -- example set membership
+
+-- subset relations [{SE Students} subset {UNIMAS student}]
+-- result of this relation will return either true or false depends on it.
+        exampleSubset : set of setExample;
+        inv exampleSubset subset setExample;
+
+-- proper subsets [A psubset B] which {1,2,3} psubset {1,2,3,4,5}
+-- resulf of this relation will return either or false depends on it
+
+types
+
+values
+
+-- set equality [{2,4,2,1} = {4,1,2}]
+-- result of this equality will return either true or false depends on it.
+operations
+        checkThisEquality : () ==> ()
+        checkThisEquality()==
+        (
+        if setExample = {1,2,3,4,5,5,5}
+        then return "true"                                                      -- it will return true
+        else return "false";                                                    -- bcs it only compare one copy of each element
+        );
+
+-- set cardinality
+-- return size of element
+operations
+        checkSizeElement: () ==> int
+        checkSizeElement()==
+        (
+        dcl a : int;
+        a := card setExample;                                                   -- return size of element 5
+        return a;
+        )
+
+-- set union [{1,2,2} union {1,6,5}] . Answer is {1,2,5,5}
+-- set intersection [{1,2,3,4,5} inter {4,5,6,7,8}]. Answer is {4,5}
+-- distributed set operator [{1,2,3,4,5} dunion {4,5,6,7}]. Answer is {1,2,3,4,5,6,7} ##gabung set
+-- set differences [{1,2,3}\{1,6,5}]. Answer is 1 because it the one that differences
+
+end ModellingUnorderedCollections
