@@ -1,0 +1,94 @@
+class Statement
+
+instance variables
+        convertedValue : int;
+        exampleSeqValue : seq of int := {12,13,14,15,16}
+
+types
+
+values
+
+-- let and let-be
+operations
+        exampleLet : int * int ==> ()
+        exampleLet(val1, val2) ==
+        (
+        let totalValue = val1                           -- pattern and expression
+        in
+        convertedValue := totalValue * val3;            -- statement (describe algorithm)
+        );
+
+-- let-be 
+operations
+        exampleLetBe : int * int ==> ()
+        exampleLetBe(val1 , val2) == 
+        (
+        let newValue : nat                              -- pattern - bind type
+        be st val1 > 5                                  -- Bool expresion
+        in convertedValue := newValue * val2 + val1;    -- statement (describe algorithm)
+        );
+
+-- define statement
+-- allow to call an operation on right side // performed operation
+operations
+        exampleDefine : int * int ==> ()
+        exampleDefine(val1, val2)==
+        (
+        def newValue = val1 + val2                      -- define pattern
+                in (                                    -- block statement
+                dcl dclvalue : nat := 50;               -- example of declared new value in block
+                newValue := newValue * dclvalue * 50;
+                return newValue;
+                )
+        );
+
+-- for loop
+operations
+        exampleLoop : int ==> ()
+        exampleLoop(val)==
+        (
+        for all x in set exampleSeqValue                -- for all [set for loop]
+        do return x * 50;                               -- for x in seq_exp [seq for loop statement] 
+        );
+
+-- while loop
+        exampleWhileLoop : int ==> ()
+        exampleWhileLoop(val)==
+        (
+        while val < 50
+        do val := val + 10;
+        );
+
+-- non-deterministic statement
+        examplenondeterministic : int ==> ()
+        examplenondeterministic(val)==
+        (
+        while val <= 4
+        do ||   (PergiKawin(), JgnNgadeNakKawin());     -- example of non-deterministic
+        )
+
+-- exit statemnent to raise exception (`exit` [expresssion_optional])
+
+-- always handling statement
+operations
+        exampleAlways : int ==> ()
+        exampleAlways(val) ==
+        (
+        always LoveSomeoneYouLove(val) in
+                (
+                DoesYouHaveSomeoneYouLove(val);
+                );
+        );
+
+-- errors and identity statement
+-- error occurances
+operations
+        exampleerrorandidentity : int ==> ()
+        exampleerrorandidentity(val)==
+        (
+        if val > 0
+        then DoSomething()
+        else error;                                     -- skip [to skip this operations]
+        )
+
+end Statement
