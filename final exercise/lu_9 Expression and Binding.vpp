@@ -20,10 +20,10 @@ functions
 
 functions
         calculateStudentMark : real * real -> real
-        calculateStudentMark(studentMark, totalMark) ==
-                let mark = studentMark > 0,
-                        studentMark = totalMark / 50 * 100
-                in studentMark;
+        calculateStudentMark(studentMark, totalMark, valuepape) ==
+                let newpatternmark = studentMark,
+                        newpatterntotalmark = totalMark / 50 * 100
+                in valuepape := newpatternmark + newpatterntotalmark;
 
 --let be such that (let `pattern` be st `exp1` in `exp2`)
 --same with the let expression [be st - is optional (be such that)]
