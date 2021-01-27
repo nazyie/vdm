@@ -1,4 +1,4 @@
-class ModellingUnorderedCollections
+class ModellingOrderedCollection
 
 types
 
@@ -51,4 +51,4 @@ instance variables
 -- return the sequences expression based on index number
         subSequencesExpression : seq of nat := [55,44,33,22](2,...,4)           -- return value from index 2-4
                                                                                 -- return value [44,33,22]
-end ModellingUnorderedCollections
+end ModellingOrderedCollection
