@@ -1,0 +1,54 @@
+class ModellingUnorderedCollections
+
+types
+
+-- example of sequence characteristic
+instance variables
+        seqExample : seq of nat := [1,2,3,4,5];                                  -- example seq
+        seqExampleNonEmpty : seq1 of nat := [{1,2}, {2,4}, {4,8}];               -- example seq1 [non empty sequences]
+
+-- sequences lenght
+        seqLenght : int := len seqExample;                                       -- return 5
+        anotherSeqLenght : int := len [];                                        -- return 0
+
+-- sequences Equality
+        resultEquality : bool := [2,4,1,2] = [4,1,2];                            -- return false
+        anotherResultEquality : bool := [1,2] = [1,2];                           -- return true
+
+-- sequences head and tail (hd) and (tl)
+        headOfSeq : nat := hd seqExample;                                       -- yield 1
+        tailOfSeq : seq of nat := tl seqExample;                                -- yield [2,3,4,5]
+
+-- sequences elements
+-- extract the sequences into the set of element
+-- it destroy the ordering information
+        seqElement : set of nat := elems seqExample;                            -- yield {1,2,3,4,5}
+
+-- sequences indices
+-- get the index of the sequences (in type of set)
+-- the index of sequences start with 1
+        seqIndices : set of nat := inds [5,4,3,2,1];                             -- return {1,2,3,4,5}
+
+-- sequences application
+        seqApplication : nat := [5,4,3,2,1](2);                                 -- return 4
+
+-- sequences modification
+-- modified the sequences
+-- THE_SEQUENCES ++ MODIFICATION_MAPPING    Eg. [12,33,88,44] ++ {1 |-> 200}
+        updatedSeqExample : seq of nat := seqExample ++ {1 |-> 100};            -- return [100,2,3,4,5]
+
+-- sequences concantinate
+-- you can concantinate A ^ B
+-- you also can concantinate by conc[A,B]
+        seqConcatenation : seq of nat := [2,2,4] ^ [4,2,3];                     -- return [2,2,4,4,2,3]
+        anotherConcat : seq of nat := conc [seqExample, seqExample];
+
+-- sequences comprehensions
+-- [ELEMENT | NUMBERIC_SET_BINDING & PREDICATE]
+        seqComprehensions : seq of nat := [3 * x| x in set {0,...,3}];
+
+-- sub-sequences expression
+-- return the sequences expression based on index number
+        subSequencesExpression : seq of nat := [55,44,33,22](2,...,4)           -- return value from index 2-4
+                                                                                -- return value [44,33,22]
+end ModellingUnorderedCollections
