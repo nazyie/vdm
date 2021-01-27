@@ -1,0 +1,62 @@
+class ModellingRelationship
+
+instance variables
+        matricNo : nat;
+        studentName : set of char;
+        grade : set of char;
+
+-- mapping characteristic
+-- map TYPE1[DOMAIN] to TYPE2[RANGE]
+-- inmap TYPE1 to TYPE2 (for injective mappings)
+        exampleMapping : map matricNo to studentName := {|->};    
+        exampleMapping2 : map grade to matricNo := {'A'|->{63187,63455,63100}};    
+
+-- mapping domain
+-- will return first element of the map in set type
+-- multiple occurance is not counted
+        exampleDomain : seq of studentName := {"Nazri"|-> 1212, "Hannan"|-> 2323};              -- return {"Nazri","Hannan"}
+
+-- mapping range
+-- will reutrn the collection of second elemnt
+-- multiple occurances of the same value does not count
+        exampleRange : seq of matricNo := {"Nazri"|-> 63187, "Hannan"|-> 63455};              -- return {63187, 63455}
+
+-- Mapping Equality
+-- it must satisfy both then it will return the boolean expression
+-- same domain value | same corresponding range values
+        mappingEquality : bool := 
+        {"Nazri"|-> 63187, "Hannan"|-> 63455} = {"Nazri"|-> 63187, "Hannan"|-> 63455};          -- return true
+
+-- Mapping Application
+-- looking the domain value based on the value
+-- return the range value
+        exampleRange : nat := {"Nazri"|-> 63187, "Hannan"|-> 63455}("Nazri");              -- return 63187
+
+-- Domain restricted
+-- s <: m [with s]
+-- s <-: m [without s]
+        domainRestricted : map grade to matricNo := {'A'} <: exampleMapping2;                     -- return map with domain 'A'
+        domainRestrictedInvert : map grade to matricNo := {'A'} <-: exampleMapping2;                     -- return map without domain 'A'
+
+-- Range restricted
+-- s :> m [with m]
+-- s :-> m [without m]
+        exmRangeRistric : map matricNo to studentName := exampleMapping :-> {"Engku Nazri"};            -- return the value except "Engku Nazri"
+
+-- mapping merge
+-- {1->2, 3->4} munion {2|->3,4->1} will combile into {1|->2,3|->4,2|->3,4|->1}
+-- mapping merge (distribution)
+-- merge {{1->2}, {2->3,3->4}} will combine it into {1->2, 2->3, 3->4}
+
+-- mapping override
+-- {1->2,2->3} ++ {1->200} then it will override the value into {1->200, 2->3}
+
+-- mapping inverse
+-- it will invert the DOMAIN and RANGE value
+-- DOMAIN |-> RANGE being invert into RANGE|-> DOMAIN
+
+-- mapping comprehensions
+-- {MAPLET | LIST_OF_BINDING & PREDICATE}
+        exampleMapplet : map nat to nat := {i |-> i * 2 | i : nat & i <= 4};
+
+end ModellingRelationship
